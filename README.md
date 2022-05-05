@@ -137,7 +137,8 @@ This repository is a clone of the splitwise backend server with some of its func
         "kdd132": 45,
         "f13d13":15,
         "adk103": 40
-    } if "splitType" is percentage
+    }, if "splitType" is percentage
+    "grpId": "uk2ee"
 }
 ```
 
