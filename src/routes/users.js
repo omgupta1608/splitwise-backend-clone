@@ -3,7 +3,7 @@ const router = require("express").Router(),
 
 router.post("/", userControllers.createUser);
 
-router.get("/spending-details/:gid", userControllers.getSpendingDetails);
+router.get("/spending-details/:gid/:userId", userControllers.getSpendingDetails);
 
 router.get("/balances/:gid", userControllers.getBalances);
 

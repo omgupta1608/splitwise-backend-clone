@@ -7,14 +7,27 @@ let controllers = {};
 
 controllers.createGroup = async (req, res) => {
     const body = req.body;
+    let users = body.users.map(u => {
+        return {
+            id: uniqid.time(),
+            balance: {
+                amount: 0,
+                type: ""
+            },
+            totalSpent: 0,
+            ...u
+        }
+    })
+    let gid = uniqid.time();
     let grpOpts = {
-        id: uniqid.time(),
+        id: gid,
         name: body.name || "No Name",
-        users: body.users,
+        users: users,
         userId: body.userId,
-        total: 0
+        total: 0,
+        expenses: []
     }
-    queries.addNewGroup(grpOpts);
+    queries.addNewGroup(grpOpts, gid);
     respLib(res, grpOpts, null, "Group Created Successfully", 201);
 };
 

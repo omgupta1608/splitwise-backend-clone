@@ -39,7 +39,7 @@ const getGroupBalances = (gid) => {
   let data = {};
   if (DATABASE.groups[gid]) {
     DATABASE.groups[gid].users.forEach((u) => {
-      data[u.uid] = u.balance;
+      data[u.id] = u.balance;
     });
   }
   return data;
@@ -60,4 +60,5 @@ module.exports = {
   getGroupById,
   getExpensesByGroup,
   updateGroup,
+  a:DATABASE
 };

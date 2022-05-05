@@ -15,7 +15,7 @@ const updateUserBalances = (grpId) => {
 			}
 		} else {
 			user.balance = {
-				amount: - parseFloat(singleShare) - parseFloat(user.totalSpent),
+				amount: parseFloat(singleShare) - parseFloat(user.totalSpent),
 				type: "owe"
 			}
 		}

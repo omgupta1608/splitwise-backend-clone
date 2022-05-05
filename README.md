@@ -99,7 +99,7 @@ This repository is a clone of the splitwise backend server with some of its func
 
 ```
 {
-    "gid":"uk2ee",
+    "grpId":"uk2ee",
     "user": {
         "name":"David",
         "email":"dav@example.com"
@@ -186,7 +186,7 @@ This repository is a clone of the splitwise backend server with some of its func
 
 ### List Total Group Spending, Total You Paid, Your total Share
 
-- GET `/api/v1/group/spending-details/:gid`
+- GET `/api/v1/group/spending-details/:gid/:userId`
 - Response
   json
 

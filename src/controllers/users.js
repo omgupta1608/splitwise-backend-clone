@@ -7,23 +7,24 @@ let controllers = {};
 
 controllers.createUser = async (req, res) => {
     const body = req.body;
+    let uid = uniqid.time();
     let userOpts = {
-        id: uniqid.time(),
+        id: uid,
         name: body.name || "No Name",
         email: body.email || ""
     }
-    queries.addNewUser(userOpts);
+    queries.addNewUser(userOpts, uid);
     respLib(res, userOpts, null, "User Created Successfully", 201);
 }
 
 controllers.getSpendingDetails = async (req, res) => {
     const grpId = req.params.gid, userId = req.params.userId;
-    let expenses = queries.getGroupById(grpId);
+    let expenses = queries.getGroupById(grpId).expenses;
     let totalGrpSpending = 0, myTotalSpending = 0, myTotalShare;
     expenses.forEach(expense => {
-        totalGrpSpending += expense.amount;
+        totalGrpSpending += parseFloat(expense.totalAmount);
         if(expense.payer == userId) {
-            myTotalSpending += expense.amount;
+            myTotalSpending += parseFloat(expense.totalAmount);
         }
     });
     myTotalShare = parseFloat((myTotalSpending/totalGrpSpending)*100);
