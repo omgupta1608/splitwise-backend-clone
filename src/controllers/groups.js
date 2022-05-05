@@ -18,14 +18,22 @@ controllers.createGroup = async (req, res) => {
 
 controllers.addUserToGroup = async (req, res) => {
     const body = req.body;
-    queries.addUserToGroup(body.user, body.grpId);
-    respLib(res, {}, null, "User Added", 201);
+    let userOpts = {
+        id: uniqid.time(),
+        ...body.user
+    }
+    queries.addUserToGroup(userOpts, body.grpId);
+    respLib(res, userOpts, null, "User Added", 201);
 };
 
 controllers.addExpenseToGroup = async (req, res) => {
     const body = req.body;
-    queries.addExpenseToGroup(body.expense, body.grpId);
-    respLib(res, {}, null, "Expense Added", 201);
+    let expenseOpts = {
+        id: uniqid.time(),
+        ...body.expense
+    };
+    queries.addExpenseToGroup(expenseOpts, body.grpId);
+    respLib(res, expenseOpts, null, "Expense Added", 201);
 };
 
 controllers.getGroupExpenses = async (req, res) => {
